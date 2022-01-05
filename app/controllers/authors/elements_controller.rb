@@ -7,7 +7,7 @@ class ElementsController < AuthorsController
 
   # POST /elements
   def create
-    @element =@post.elements.build
+    @element =@post.elements.build(element_params)
 
     if @element.save
       redirect_to edit_post_path(@post)
@@ -19,7 +19,7 @@ class ElementsController < AuthorsController
   # PATCH/PUT /elements/1
   def update
     if @element.update(element_params)
-      redirect_to @element, notice: 'Element was successfully updated.'
+      redirect_to edit_post_path(@post), notice: 'Element was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class ElementsController < AuthorsController
   end
   # Use callbacks to share common setup or constraints between actions.
     def set_element
-      @element = @post.element.find(params[:id])
+      @element = @post.elements.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
