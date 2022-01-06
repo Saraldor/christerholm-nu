@@ -7,11 +7,12 @@
 <h4 class="card-title">Edit posts</h4>
 <%= render 'form', post: @post %>
   </div>
+  
 </div>
   </div>
  <div class="col-md-9">
  <div class="mb-3">
-  <%= form_with(model:[@post,@text_elements], html: { class:' d-flex justify-content-between' }) do |form| %>
+  <%= form_with(model:[@post,@text_elements], html: { class:' float-start ms-3 ' }) do |form| %>
     <%= form.hidden_field :element_type, value: 'paragraph' %>
     <%= form.submit "Paragraph", class:'btn btn-dark' %>
     <% end %>
@@ -51,7 +52,10 @@
         <% elsif element.image? %>
         <div class="mb-4 p-3 image">
         <% if element.image.present? %>
+       <div>
         <%= image_tag(element.image) %>
+        </div>
+        <%= link_to 'Delete', post_element_path(@post, element), method: :delete, class: 'btn btn-danger mt-2 float-end', data: { confirm: "Are you sure?" } %>
         <% else %>
 
         <%= form_with(model: [@post, element]) do |form| %>
