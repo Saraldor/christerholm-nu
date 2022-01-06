@@ -19,8 +19,7 @@ class ElementsController < AuthorsController
   # PATCH/PUT /elements/1
   def update
     if @element.update(element_params)
-      redirect_to edit_post_path(@post), notice: 'Element was successfully updated.'
-    else
+      redirect_to edit_post_path(@element.post)
       render :edit
     end
   end
@@ -28,7 +27,7 @@ class ElementsController < AuthorsController
   # DELETE /elements/1
   def destroy
     @element.destroy
-    redirect_to elements_url, notice: 'Element was successfully destroyed.'
+    redirect_to edit_post_path(@element.post)
   end
 
   private
@@ -43,7 +42,7 @@ class ElementsController < AuthorsController
 
     # Only allow a list of trusted parameters through.
     def element_params
-      params.require(:element).permit(:element_type, :content)
+      params.require(:element).permit(:element_type, :content, :image)
     end
 end
 end

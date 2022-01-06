@@ -20,6 +20,7 @@ class PostsController < AuthorsController
   # GET /posts/1/edit
   def edit
     @text_elements = @post.elements.build(element_type:'paragraph')
+    @image = @post.elements.build(element_type:'image')
   end
 
   # POST /posts
